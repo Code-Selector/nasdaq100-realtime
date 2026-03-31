@@ -2,5 +2,5 @@ flask
 flask-cors
 pytz
 requests
-pandas
 pymysql
+DBUtils
