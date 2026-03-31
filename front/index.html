@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>纳斯达克100 实时行情</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ═══ 顶部信息条 ═══ -->
+    <header class="header">
+        <div class="header-left">
+            <h1>📊 纳斯达克100 实时行情</h1>
+        </div>
+        <div class="header-right">
+            <div class="session-badge" id="sessionBadge">加载中...</div>
+            <div class="time-info">
+                <span id="timeCN">--</span>
+                <span class="sep">|</span>
+                <span id="timeET">--</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══ 统计卡片 ═══ -->
+    <section class="stats-bar">
+        <div class="stat-card up">
+            <div class="stat-value" id="statUp">--</div>
+            <div class="stat-label">上涨</div>
+        </div>
+        <div class="stat-card down">
+            <div class="stat-value" id="statDown">--</div>
+            <div class="stat-label">下跌</div>
+        </div>
+        <div class="stat-card flat">
+            <div class="stat-value" id="statFlat">--</div>
+            <div class="stat-label">平盘</div>
+        </div>
+        <div class="stat-card avg">
+            <div class="stat-value" id="statAvg">--</div>
+            <div class="stat-label">平均涨幅</div>
+        </div>
+        <div class="stat-card total">
+            <div class="stat-value" id="statTotal">--</div>
+            <div class="stat-label">成分股</div>
+        </div>
+        <div class="stat-card refresh">
+            <div class="stat-value" id="statRefresh">--</div>
+            <div class="stat-label">刷新次数</div>
+        </div>
+    </section>
+
+    <!-- ═══ 搜索 & 排序 ═══ -->
+    <section class="toolbar">
+        <input type="text" id="searchInput" placeholder="搜索 Ticker 或名称..." class="search-input">
+        <div class="sort-group">
+            <label>排序:</label>
+            <select id="sortSelect" class="sort-select">
+                <option value="changePercent_desc">涨跌幅 ↓</option>
+                <option value="changePercent_asc">涨跌幅 ↑</option>
+                <option value="price_desc">价格 ↓</option>
+                <option value="price_asc">价格 ↑</option>
+                <option value="volume_desc">成交量 ↓</option>
+                <option value="marketCap_desc">市值 ↓</option>
+                <option value="ticker_asc">Ticker A-Z</option>
+            </select>
+        </div>
+        <div class="auto-refresh">
+            <label><input type="checkbox" id="autoRefreshCheck" checked> 自动刷新 (60s)</label>
+            <span class="countdown" id="countdown">60</span>
+        </div>
+    </section>
+
+    <!-- ═══ 涨跌幅热力条 ═══ -->
+    <section class="heatbar-section">
+        <div class="heatbar" id="heatbar"></div>
+    </section>
+
+    <!-- ═══ 股票表格 ═══ -->
+    <section class="table-section">
+        <table class="stock-table" id="stockTable">
+            <thead>
+                <tr>
+                    <th class="col-rank">#</th>
+                    <th class="col-ticker">Ticker</th>
+                    <th class="col-name">名称</th>
+                    <th class="col-price">最新价</th>
+                    <th class="col-change">涨跌额</th>
+                    <th class="col-pct">涨跌幅</th>
+                    <th class="col-bar">涨跌</th>
+                    <th class="col-ah">盘后价</th>
+                    <th class="col-ahpct">盘后幅</th>
+                    <th class="col-prevclose">昨收</th>
+                    <th class="col-open">今开</th>
+                    <th class="col-high">最高</th>
+                    <th class="col-low">最低</th>
+                    <th class="col-volume">成交量</th>
+                    <th class="col-cap">总市值</th>
+                    <th class="col-pe">PE</th>
+                </tr>
+            </thead>
+            <tbody id="stockBody">
+                <tr><td colspan="16" class="loading">正在加载数据...</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- ═══ 底栏 ═══ -->
+    <footer class="footer">
+        <span>数据来源: 新浪财经 | 延迟 ~实时</span>
+        <span id="updateInfo">等待首次刷新...</span>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
